@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "version"
-
 module IPAddrExt
   module Extensions
     # Returns the broadcast address
