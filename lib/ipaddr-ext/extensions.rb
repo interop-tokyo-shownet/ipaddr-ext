@@ -38,6 +38,18 @@ module IPAddrExt
       _to_string(mask)
     end
 
+    # Returns a address greater than the original address by offset
+    # @param offset [Integer]
+    def +(offset)
+      self.clone.set(@addr + offset, @family)
+    end
+
+    # Returns a address less than the original address by offset
+    # @param offset [Integer]
+    def -(offset)
+      self.clone.set(@addr - offset, @family)
+    end
+
     # Returns the host address
     def to_host
       case @family

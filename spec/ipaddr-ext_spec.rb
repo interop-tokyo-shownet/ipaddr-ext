@@ -34,6 +34,34 @@ RSpec.describe IPAddrExt do
     end
   end
 
+  context "#+" do
+    it "ipv4" do
+      expect((IPAddr.new("192.168.1.2") + 10).to_s_with_prefix).to eq '192.168.1.12/32'
+      expect((IPAddr.new("192.168.1.0/24") + 10).to_s_with_prefix).to eq '192.168.1.10/24'
+
+      expect{ IPAddr.new("255.255.255.255") + 1 }.to raise_error IPAddr::InvalidAddressError
+    end
+
+    it "ipv6" do
+      expect((IPAddr.new("3ffe:505:2::1") + 10).to_s_with_prefix).to eq '3ffe:505:2::b/128'
+      expect((IPAddr.new("3ffe:505:2::/64") + 10).to_s_with_prefix).to eq '3ffe:505:2::a/64'
+    end
+  end
+
+  context "#-" do
+    it "ipv4" do
+      expect((IPAddr.new("192.168.1.2") - 1).to_s_with_prefix).to eq '192.168.1.1/32'
+      expect((IPAddr.new("192.168.1.0/24") - 1).to_s_with_prefix).to eq '192.168.0.255/24'
+
+      expect{ IPAddr.new("0.0.0.0") - 1 }.to raise_error IPAddr::InvalidAddressError
+    end
+
+    it "ipv6" do
+      expect((IPAddr.new("3ffe:505:2::1") - 1).to_s_with_prefix).to eq '3ffe:505:2::/128'
+      expect((IPAddr.new("3ffe:505:2::/64") - 1).to_s_with_prefix).to eq '3ffe:505:1:ffff:ffff:ffff:ffff:ffff/64'
+    end
+  end
+
   context "#to_host" do
     it "ipv4" do
       expect(IPAddr.new("192.168.1.0/24").to_host).to eq '192.168.1.0/32'
