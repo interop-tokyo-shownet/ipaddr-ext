@@ -38,6 +38,18 @@ module IPAddrExt
       _to_string(mask)
     end
 
+    # Returns the host address
+    def to_host
+      case @family
+      when Socket::AF_INET
+        self.mask(32)
+      when Socket::AF_INET6
+        self.mask(128)
+      else
+        raise AddressFamilyError, "unsupported address family"
+      end
+    end
+
     # Returns the address with prefix
     def to_s_with_prefix
       "#{self.to_s}/#{prefix}"

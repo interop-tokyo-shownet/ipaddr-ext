@@ -34,6 +34,20 @@ RSpec.describe IPAddrExt do
     end
   end
 
+  context "#to_host" do
+    it "ipv4" do
+      expect(IPAddr.new("192.168.1.0/24").to_host).to eq '192.168.1.0/32'
+      expect(IPAddr.new("192.168.1.0/24").succ.to_host).to eq '192.168.1.1/32'
+      expect(IPAddr.new("192.168.1.2").to_host).to eq '192.168.1.2/32'
+    end
+
+    it "ipv6" do
+      expect(IPAddr.new("3ffe:505:2::/64").to_host).to eq '3ffe:505:2::/128'
+      expect(IPAddr.new("3ffe:505:2::/64").succ.to_host).to eq '3ffe:505:2::1/128'
+      expect(IPAddr.new("3ffe:505:2::1").to_host).to eq '3ffe:505:2::1/128'
+    end
+  end
+
   context "#to_s_with_prefix" do
     it "ipv4" do
       expect(IPAddr.new("192.168.1.2").to_s_with_prefix).to eq '192.168.1.2/32'
