@@ -5,6 +5,20 @@ RSpec.describe IPAddrExt do
     expect(IPAddrExt::VERSION).not_to be nil
   end
 
+  context "#broadcast" do
+    it "ipv4" do
+      expect(IPAddr.new("192.168.1.2/8").broadcast).to eq "192.255.255.255"
+      expect(IPAddr.new("192.168.1.2/16").broadcast).to eq "192.168.255.255"
+      expect(IPAddr.new("192.168.1.2/24").broadcast).to eq "192.168.1.255"
+      expect(IPAddr.new("192.168.1.2/32").broadcast).to eq "192.168.1.2"
+    end
+
+    it "ipv6" do
+      expect(IPAddr.new("3ffe:505:2::/48").broadcast).to eq nil
+      expect(IPAddr.new("3ffe:505:2::/128").broadcast).to eq nil
+    end
+  end
+
   context "#wildcard_mask" do
     it "ipv4" do
       expect(IPAddr.new("192.168.1.2/1").wildcard_mask).to eq "127.255.255.255"
