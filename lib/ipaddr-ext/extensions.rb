@@ -37,5 +37,10 @@ module IPAddrExt
 
       _to_string(mask)
     end
+
+    # Returns the address with prefix
+    def to_s_with_prefix
+      "#{self.to_s}/#{prefix}"
+    end
   end
 end

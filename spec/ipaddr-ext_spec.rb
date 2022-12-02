@@ -33,4 +33,16 @@ RSpec.describe IPAddrExt do
       expect(IPAddr.new("3ffe:505:2::/128").wildcard_mask).to eq "0000:0000:0000:0000:0000:0000:0000:0000"
     end
   end
+
+  context "#to_s_with_prefix" do
+    it "ipv4" do
+      expect(IPAddr.new("192.168.1.2").to_s_with_prefix).to eq '192.168.1.2/32'
+      expect(IPAddr.new("192.168.1.0/24").to_s_with_prefix).to eq '192.168.1.0/24'
+    end
+
+    it "ipv6" do
+      expect(IPAddr.new("3ffe:505:2::1").to_s_with_prefix).to eq '3ffe:505:2::1/128'
+      expect(IPAddr.new("3ffe:505:2::/64").to_s_with_prefix).to eq '3ffe:505:2::/64'
+    end
+  end
 end
