@@ -1,8 +1,6 @@
 # IPAddrExt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ipaddr-ext`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+IPAddrExt provides extensions of IPAddr class.
 
 ## Installation
 
@@ -16,7 +14,23 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'ipaddr-ext'
+
+ipaddr1 = IPAddr.new("3ffe:505:2::1")
+p ipaddr1.to_s_with_prefix
+#=> "3ffe:505:2::1/128"
+
+ipaddr2 = IPAddr.new("3ffe:505:2::/64")
+p ipaddr2.to_s_with_prefix
+#=> "3ffe:505:2::/64"
+
+ipaddr3 = IPAddr.new("3ffe:505:2::1")
+p (ipaddr3 + 5)
+#=> #<IPAddr: IPv6:3ffe:0505:0002:0000:0000:0000:0000:0006/ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff>
+p (ipaddr3 + 5).to_s_with_prefix
+#=> "3ffe:505:2::6/128"
+```
 
 ## Development
 
@@ -26,12 +40,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ipaddr-ext. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ipaddr-ext/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ipaddr-ext. This project is intended to be a safe, welcoming space for collaboration.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the IPAddrExt project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ipaddr-ext/blob/master/CODE_OF_CONDUCT.md).
