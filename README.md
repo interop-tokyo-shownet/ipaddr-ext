@@ -54,6 +54,10 @@ ipaddr5.to_host.to_s_with_prefix
 => "3ffe:505:2::/128"
 ipaddr5.to_host.succ.to_s_with_prefix
 => "3ffe:505:2::1/128"
+
+# to_json: export with prefix string
+IPAddr.new("3ffe:505:2::/64").to_json
+=> "\"3ffe:505:2::/64\""
 ```
 
 ## Development
