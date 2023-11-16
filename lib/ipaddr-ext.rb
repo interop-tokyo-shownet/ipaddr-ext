@@ -6,4 +6,6 @@ require "ipaddr-ext/extensions"
 require "ipaddr-ext/json"
 
 IPAddr.send(:include, IPAddrExt::Extensions)
+
+IPAddrExt::JSON.remove_as_json
 IPAddr.send(:include, IPAddrExt::JSON)
