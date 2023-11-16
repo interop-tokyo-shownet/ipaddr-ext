@@ -23,9 +23,9 @@ RSpec.describe IPAddrExt::JSON do
     end
 
     it "ipv6" do
-      expect(IPAddr.new("3ffe:505:2::1").as_json).to eq "3ffe:505:2::1\""
-      expect(IPAddr.new("3ffe:505:2::2/128").as_json).to eq "3ffe:505:2::2\""
-      expect(IPAddr.new("3ffe:505:2::/64").as_json).to eq "3ffe:505:2::/64\""
+      expect(IPAddr.new("3ffe:505:2::1").as_json).to eq "3ffe:505:2::1"
+      expect(IPAddr.new("3ffe:505:2::2/128").as_json).to eq "3ffe:505:2::2"
+      expect(IPAddr.new("3ffe:505:2::/64").as_json).to eq "3ffe:505:2::/64"
     end
   end
 end
