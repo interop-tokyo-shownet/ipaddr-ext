@@ -14,4 +14,18 @@ RSpec.describe IPAddrExt::JSON do
       expect(IPAddr.new("3ffe:505:2::/64").to_json).to eq "\"3ffe:505:2::/64\""
     end
   end
+
+  context "#as_json" do
+    it "ipv4" do
+      expect(IPAddr.new("192.168.1.1").as_json).to eq "192.168.1.1"
+      expect(IPAddr.new("192.168.1.2/32").as_json).to eq "192.168.1.2"
+      expect(IPAddr.new("192.168.1.0/24").as_json).to eq "192.168.1.0/24"
+    end
+
+    it "ipv6" do
+      expect(IPAddr.new("3ffe:505:2::1").as_json).to eq "3ffe:505:2::1\""
+      expect(IPAddr.new("3ffe:505:2::2/128").as_json).to eq "3ffe:505:2::2\""
+      expect(IPAddr.new("3ffe:505:2::/64").as_json).to eq "3ffe:505:2::/64\""
+    end
+  end
 end
