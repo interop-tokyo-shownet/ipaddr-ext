@@ -58,6 +58,12 @@ ipaddr5.to_host.succ.to_s_with_prefix
 # to_json: export with prefix string
 IPAddr.new("3ffe:505:2::/64").to_json
 => "\"3ffe:505:2::/64\""
+
+# ==: Fix to compare with address prefix
+IPAddr.new("192.168.1.0/24") == IPAddr.new("192.168.1.0/24")
+=> true
+IPAddr.new("192.168.1.0/24") == IPAddr.new("192.168.1.0/25")
+=> false # different behavior with pure IPAddr class
 ```
 
 ## Development
