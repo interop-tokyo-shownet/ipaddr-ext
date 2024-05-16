@@ -8,7 +8,7 @@
 /tmp/
 
 /Gemfile.lock
-/vendor/bundle
+.ruby-version
 
 # rspec failure tracking
 .rspec_status
