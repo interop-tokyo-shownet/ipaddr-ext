@@ -36,6 +36,16 @@ module IPAddrExt
       _to_string(mask)
     end
 
+    # Returns true if two ipaddrs are equal.
+    # Overwrite original == method, fixing to compare address with prefix
+    def ==(other)
+      other = coerce_other(other)
+    rescue
+      false
+    else
+      @family == other.family && @addr == other.to_i && prefix == other.prefix
+    end
+
     # Returns a address greater than the original address by offset
     # @param offset [Integer]
     def +(offset)
