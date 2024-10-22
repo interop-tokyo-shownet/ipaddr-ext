@@ -1,5 +1,4 @@
 require "ipaddr"
-require 'json'
 
 require "ipaddr-ext/version"
 require "ipaddr-ext/extensions"
