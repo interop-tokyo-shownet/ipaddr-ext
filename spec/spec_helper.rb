@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+begin
+  require 'action_view'
+rescue LoadError
+end
+
 require "ipaddr-ext"
 
 RSpec.configure do |config|
