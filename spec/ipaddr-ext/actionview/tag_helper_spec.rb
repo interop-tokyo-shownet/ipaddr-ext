@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-require 'action_view'
-
 RSpec.describe "IPAddrExt::ActionView::TagHelper" do
-  include ActionView::Helpers::TagHelper
+  begin
+    require 'action_view'
+    include ActionView::Helpers::TagHelper
+  rescue LoadError
+    before do
+      skip 'Does not depend on action_view gem'
+    end
+  end
 
   context "#tag_option" do
     it "tag options with ipaddr v4" do

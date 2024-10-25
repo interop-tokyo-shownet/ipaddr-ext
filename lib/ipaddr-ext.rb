@@ -9,4 +9,6 @@ IPAddr.send(:prepend, IPAddrExt::Extensions)
 IPAddrExt::JSON.remove_as_json
 IPAddr.send(:include, IPAddrExt::JSON)
 
-require "ipaddr-ext/actionview/tag_helper"
+if defined?(::ActionView) && ActionView.version >= Gem::Version.new("6.1.0")
+  require "ipaddr-ext/actionview/tag_helper"
+end
