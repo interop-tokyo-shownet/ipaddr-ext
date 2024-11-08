@@ -11,6 +11,6 @@ if ENV['CI'].nil?
 else
   # for CI
   unless ENV['RAILS_VERSION'].nil? || ENV['RAILS_VERSION'] == ''
-    gem "actionview", "~> #{ENV['RAILS_VERSION']}"
+    gem "actionview", "~> #{ENV['RAILS_VERSION']}.0"
   end
 end

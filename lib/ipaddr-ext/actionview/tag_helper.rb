@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require 'action_view'
+if (ActionView.gem_version >= Gem::Version.new('7.2.2') && ActionView.gem_version < Gem::Version.new('8.0')) ||
+   (ActionView.gem_version >= Gem::Version.new('7.1.5') && ActionView.gem_version < Gem::Version.new('7.2'))
+  require 'uri'
+end
 
 module ActionView
   module Helpers
