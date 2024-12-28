@@ -19,5 +19,9 @@ else
       gem 'bigdecimal'
       gem 'drb'
     end
+    if RUBY_VERSION >= '3.4'
+      gem 'benchmark'
+      gem 'logger'
+    end
   end
 end
