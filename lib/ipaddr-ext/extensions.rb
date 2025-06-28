@@ -47,16 +47,20 @@ module IPAddrExt
       @family == other.family && @addr == other.to_i && prefix == other.prefix
     end
 
-    # Returns a address greater than the original address by offset
-    # @param offset [Integer]
-    def +(offset)
-      self.clone.set(@addr + offset, @family)
+    unless IPAddr.method_defined?(:+)
+      # Returns a address greater than the original address by offset
+      # @param offset [Integer]
+      def +(offset)
+        self.clone.set(@addr + offset, @family)
+      end
     end
 
-    # Returns a address less than the original address by offset
-    # @param offset [Integer]
-    def -(offset)
-      self.clone.set(@addr - offset, @family)
+    unless IPAddr.method_defined?(:-)
+      # Returns a address less than the original address by offset
+      # @param offset [Integer]
+      def -(offset)
+        self.clone.set(@addr - offset, @family)
+      end
     end
 
     # Returns the host address
