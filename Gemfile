@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "irb"
+
 if ENV['CI'].nil?
   # for development
   gem "actionview"
