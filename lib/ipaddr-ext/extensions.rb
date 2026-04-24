@@ -40,6 +40,12 @@ module IPAddrExt
     # Returns true if two ipaddrs are equal.
     # Overwrite original == method, fixing to compare address with prefix
     def ==(other)
+      # Fix inconsistent behavior between `IPAddr.new("0.0.0.0") == nil` and `nil == IPAddr.new("0.0.0.0")`
+      # https://github.com/ruby/ipaddr/pull/76
+      if other.nil?
+        return false
+      end
+
       other = coerce_other(other)
     rescue
       false

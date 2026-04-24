@@ -40,6 +40,9 @@ RSpec.describe IPAddrExt::Extensions do
       expect(IPAddr.new("192.168.1.0/24") == IPAddr.new("192.168.1.0/25")).to eq false
       expect(IPAddr.new("192.168.1.0/24") == IPAddr.new("192.168.1.0")).to eq false
       expect(IPAddr.new("192.168.1.0/24") == IPAddr.new("192.168.1.1")).to eq false
+
+      expect(IPAddr.new("0.0.0.0") == nil).to eq false
+      expect(nil == IPAddr.new("0.0.0.0")).to eq false
     end
 
     it "ipv6" do
@@ -50,6 +53,9 @@ RSpec.describe IPAddrExt::Extensions do
       expect(IPAddr.new("3ffe:505:2::/64") == IPAddr.new("3ffe:505:2::/48")).to eq false
       expect(IPAddr.new("3ffe:505:2::/64") == IPAddr.new("3ffe:505:2::")).to eq false
       expect(IPAddr.new("3ffe:505:2::/64") == IPAddr.new("3ffe:505:2::1")).to eq false
+
+      expect(IPAddr.new("::") == nil).to eq false
+      expect(nil == IPAddr.new("::")).to eq false
     end
   end
 
